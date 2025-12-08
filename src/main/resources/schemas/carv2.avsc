@@ -1,0 +1,12 @@
+{
+  "type": "record",
+  "name": "Car",
+  "namespace": "com.carsales.recorder.avro",
+  "fields": [
+    { "name": "make", "type": "string" },
+    { "name": "model", "type": "string" },
+    { "name": "colour", "type": "string" },
+    { "name": "price", "type": "double" },
+    { "name": "status", "type": "string", "default": "FOR_SALE" }
+  ]
+}

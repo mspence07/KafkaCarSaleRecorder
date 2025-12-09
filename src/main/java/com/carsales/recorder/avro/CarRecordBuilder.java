@@ -8,6 +8,7 @@ import org.apache.avro.generic.GenericData;
 import org.apache.avro.generic.GenericRecord;
 import org.apache.avro.reflect.ReflectData;
 
+/** Builder class to construct avro records for a given car schema version. */
 public class CarRecordBuilder {
 
   private ICar car;

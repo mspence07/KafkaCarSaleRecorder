@@ -1,7 +1,5 @@
 package com.carsales.recorder.config;
 
-import java.util.HashMap;
-import java.util.Map;
 import org.apache.avro.generic.GenericRecord;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,8 +10,12 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Configuration
 @PropertySource("classpath:application.properties")
+/** Constructs a Kafka producer using the Spring framework. */
 public class KafkaProducerConfig {
 
   @Value("${spring.kafka.bootstrap-servers}")

@@ -8,7 +8,7 @@ The generated records are pushed to a Kafka topic. On the consumer side, the Kaf
 
 ## Example Usage
 
-Below are some sample commands demonstrating the app working with Schema Registry and JSON output from MinIO S3. To run the app, you will need Docker installed.
+Below are some sample commands demonstrating the app working with Schema Registry and JSON output from MinIO S3, which shows schema evolution working with Kafka Producers/ Kafka Connect. To run the app, you will need Docker installed.
 
 ### Start the app and dependencies
 

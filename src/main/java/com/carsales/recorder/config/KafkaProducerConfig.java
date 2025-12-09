@@ -14,6 +14,7 @@ import org.springframework.kafka.core.ProducerFactory;
 
 @Configuration
 @PropertySource("classpath:application.properties")
+/** Constructs a Kafka producer using the Spring framework. */
 public class KafkaProducerConfig {
 
   @Value("${spring.kafka.bootstrap-servers}")

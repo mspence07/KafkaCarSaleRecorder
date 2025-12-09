@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
+/** Utility for random generation of Car data. */
 public class CarSaleGenerator {
 
   private static final Map<String, List<String>> CARS =
@@ -37,13 +38,13 @@ public class CarSaleGenerator {
     return new CarV2(base.uuid(), base.make(), base.model(), base.colour(), base.price(), status);
   }
 
-  public static String getRandomMake() {
+  private static String getRandomMake() {
     List<String> makes = CARS.keySet().stream().toList();
 
     return makes.get(ThreadLocalRandom.current().nextInt(makes.size()));
   }
 
-  public static String getRandomModel(String make) {
+  private static String getRandomModel(final String make) {
     List<String> models = CARS.get(make);
     return models.get(ThreadLocalRandom.current().nextInt(models.size()));
   }

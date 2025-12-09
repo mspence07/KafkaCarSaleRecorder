@@ -114,7 +114,7 @@ Downloaded JSON files now include the `status` field:
 
 Since the connector is configured in **backward compatible mode**, issuing another request using the v1 schema is fully supported by the Schema Registry.
 
-# TODO
+## TODO
 
 * Health checks
 * Logging

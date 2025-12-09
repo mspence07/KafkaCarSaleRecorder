@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   kafka:
     image: apache/kafka:latest
@@ -49,18 +48,19 @@ services:
       MINIO_ROOT_USER: minioadmin
       MINIO_ROOT_PASSWORD: minio123
     command: server /data --console-address ":9001"
+
   createbuckets:
     image: minio/minio
     depends_on:
       - minio
     restart: on-failure
-    entrypoint: >
-      /bin/sh -c "
-      sleep 5;
-      /usr/bin/mc alias set dockerminio http://minio:9000 minioadmin minio123;
-      /usr/bin/mc mb dockerminio/car-sales-bucket;
-      exit 0;
-      "
+    entrypoint: 
+      - sh
+      - -c
+      - |
+        sleep 5 && \
+        /usr/bin/mc alias set dockerminio http://minio:9000 minioadmin minio123 && \
+        /usr/bin/mc mb dockerminio/car-sales-bucket || true
   kafka-connect:
     image: confluentinc/cp-kafka-connect:8.1.1
     container_name: connect
@@ -91,13 +91,15 @@ services:
       CONNECT_PLUGIN_PATH: "/usr/share/confluent-hub-components,/etc/kafka-connect/jars,/connectors"
     volumes:
       - ./connectors:/connectors
-    # **Install S3 connector at container startup**
+      - ./scripts:/scripts
     entrypoint:
       - bash
       - -c
       - |
         confluent-hub install --no-prompt confluentinc/kafka-connect-s3:10.5.0 && \
-        /etc/confluent/docker/run
+        /scripts/install-connector-config.sh & \
+        /etc/confluent/docker/run 
+        
   car-sale-app:
     platform: linux/amd64
     image: eclipse-temurin:17-jdk

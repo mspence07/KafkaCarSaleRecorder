@@ -3,6 +3,7 @@
   "name": "Car",
   "namespace": "com.carsales.recorder.avro",
   "fields": [
+    { "name": "uuid", "type": "string" },
     { "name": "make", "type": "string" },
     { "name": "model", "type": "string" },
     { "name": "colour", "type": "string" },

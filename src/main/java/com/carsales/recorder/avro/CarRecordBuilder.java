@@ -3,10 +3,10 @@ package com.carsales.recorder.avro;
 import com.carsales.recorder.model.CarV1;
 import com.carsales.recorder.model.CarV2;
 import com.carsales.recorder.model.ICar;
+import java.io.IOException;
 import org.apache.avro.Schema;
 import org.apache.avro.generic.GenericData;
 import org.apache.avro.generic.GenericRecord;
-import org.apache.avro.reflect.ReflectData;
 
 /** Builder class to construct avro records for a given car schema version. */
 public class CarRecordBuilder {
@@ -44,7 +44,14 @@ public class CarRecordBuilder {
   }
 
   private GenericRecord buildV1Record(CarV1 carV1) {
-    Schema schema = ReflectData.get().getSchema(CarV1.class);
+    Schema schema = null;
+    try {
+      schema =
+          new Schema.Parser()
+              .parse(CarRecordBuilder.class.getResourceAsStream("/schemas/carv1.avsc"));
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
     GenericRecord record = new GenericData.Record(schema);
     record.put("uuid", carV1.uuid());
     record.put("make", carV1.make());
@@ -55,7 +62,15 @@ public class CarRecordBuilder {
   }
 
   private GenericRecord buildV2Record(CarV2 carV2) {
-    Schema schema = ReflectData.get().getSchema(CarV2.class);
+    Schema schema = null;
+    try {
+      schema =
+          new Schema.Parser()
+              .parse(CarRecordBuilder.class.getResourceAsStream("/schemas/carv2.avsc"));
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+
     GenericRecord record = new GenericData.Record(schema);
     record.put("uuid", carV2.uuid());
     record.put("make", carV2.make());

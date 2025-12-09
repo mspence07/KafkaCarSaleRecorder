@@ -1,7 +1,7 @@
 package com.carsales.recorder.model;
 
 /**
- * Record for holding information about a CarV2 Schema.
+ * Record for holding information about a CarV1 Schema.
  *
  * @param uuid
  * @param make

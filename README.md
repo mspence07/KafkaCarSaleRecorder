@@ -113,3 +113,12 @@ Downloaded JSON files now include the `status` field:
 ### Backward compatibility
 
 Since the connector is configured in **backward compatible mode**, issuing another request using the v1 schema is fully supported by the Schema Registry.
+
+# TODO
+
+* Health checks
+* Logging
+* Exception handling
+* Unit testing
+* Return a meaningful response instead of System.out statements
+
